@@ -1,3 +1,5 @@
+package co.com;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -11,12 +13,14 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+@Component
 public class Main
 {
     final static String URL_TOKEN = "localhost:8080/token";
@@ -33,13 +37,13 @@ public class Main
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "*\1 * * * *")
+    @Scheduled(cron = "0/1 * * * * *")
     public void prueba()
     {
-        log.info("El tiempo es {}", dateFormat.format(new Date()));
+        log.info("CRON PRUEBA. El tiempo es {}", dateFormat.format(new Date()));
     }
 
-
+    @Scheduled(cron = "0/45 * * * * *")
     public void task()
     {
         log.info("El tiempo es {}", dateFormat.format(new Date()));
