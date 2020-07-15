@@ -23,9 +23,9 @@ import java.util.Date;
 @Component
 public class Main
 {
-    final static String URL_TOKEN = "localhost:8080/token";
-    final static String URL_AFILIACIONES = "localhost:8080/AfiliacionARL";
-    final static String URL_EMPRESAS = "localhost:8080/ConsultaEmpresasTrasladadas";
+    final static String URL_TOKEN = "http://localhost:8080/token";
+    final static String URL_AFILIACIONES = "http://localhost:8080/AfiliacionARL";
+    final static String URL_EMPRESAS = "http://localhost:8080/ConsultaEmpresasTrasladadas";
 
     final static String CONTENT_TYPE = "Content-Type";
     final static String AUTHORIZATION = "Authorization";
