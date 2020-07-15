@@ -31,6 +31,7 @@ public class Main
     final static String AUTHORIZATION = "Authorization";
     final static String BEARER = "bearer ";
     final static String CONTENT_TYPE_JSON = "application/json";
+    final static String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
     static Logger log = LoggerFactory.getLogger(Main.class);
     static ConfigFile configFile;
@@ -89,7 +90,7 @@ public class Main
         params.add(new BasicNameValuePair("grant_type", "password"));
         params.add(new BasicNameValuePair("client_id", "9160f6412fad4b7fbc5f86d37a8dd680"));
         HttpPost post = new HttpPost(URL_TOKEN);
-        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
+        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_FORM);
         post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
