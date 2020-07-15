@@ -31,6 +31,7 @@ public class Main
     final static String AUTHORIZATION = "Authorization";
     final static String BEARER = "bearer ";
     final static String CONTENT_TYPE_JSON = "application/json";
+    final static String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
     static Logger log = LoggerFactory.getLogger(Main.class);
     static ConfigFile configFile;
@@ -84,13 +85,8 @@ public class Main
     private String token() throws IOException
     {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("username", "830008686"));
-        params.add(new BasicNameValuePair("password", "830008686"));
-        params.add(new BasicNameValuePair("grant_type   ", "password"));
-        params.add(new BasicNameValuePair("client_id", "9160f6412fad4b7fbc5f86d37a8dd680"));
         HttpPost post = new HttpPost(URL_TOKEN);
-        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
-        post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+        post.setHeader(CONTENT_TYPE, "application/x-www-form-urlencoded");
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
             int status_code = response.getStatusLine().getStatusCode();
@@ -102,6 +98,7 @@ public class Main
             }else
             {
                 throw new IllegalStateException("Error en el token: ".concat(status_code + ""));
+                
             }
         }
     }
