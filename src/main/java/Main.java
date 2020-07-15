@@ -121,7 +121,7 @@ public class Main
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                if(response.getEntity().getContentLength() > 0)
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
                 {
                     BufferedReader reader =
                             new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
@@ -170,7 +170,7 @@ public class Main
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                if(response.getEntity().getContentLength() > 0)
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
                 {
                     BufferedReader reader =
                             new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
@@ -209,7 +209,7 @@ public class Main
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                if(response.getEntity().getContentLength() > 0)
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
                 {
                     BufferedReader reader =
                             new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
@@ -218,7 +218,6 @@ public class Main
                     {
                         sb.append(line);
                     }
-
                 }
 
                 return new JSONObject(sb.toString());
