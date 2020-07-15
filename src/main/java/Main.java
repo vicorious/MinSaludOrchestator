@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,12 +116,25 @@ public class Main
         HttpPost post = new HttpPost(URL_AFILIACIONES);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
+        StringBuilder sb = new StringBuilder();
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post)) {
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                String json_string = EntityUtils.toString(response.getEntity());
-                return new JSONObject(json_string);
+                if(response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+
+                }
+
+                return new JSONObject(sb.toString());
+
             }else
             {
                 throw new IllegalStateException("Error en las afiliaciones: ".concat(status_code + ""));
@@ -148,15 +163,26 @@ public class Main
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
         post.setEntity(new ByteArrayEntity(request.toString().getBytes()));
+        StringBuilder sb = new StringBuilder();
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                String json_string = EntityUtils.toString(response.getEntity());
+                if(response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
 
-                return new JSONObject(json_string);
+                }
+
+                return new JSONObject(sb.toString());
             }else
             {
                 throw new IllegalStateException("Error en el consultaEmpresas: ".concat(status_code + ""));
@@ -176,14 +202,26 @@ public class Main
         HttpPost post = new HttpPost(URL_EMPRESAS);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
+        StringBuilder sb = new StringBuilder();
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
             {
-                String json_string = EntityUtils.toString(response.getEntity());
-                return new JSONObject(json_string);
+                if(response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+
+                }
+
+                return new JSONObject(sb.toString());
             }else
             {
                 throw new IllegalStateException("Error en el consultaEstructuraEmpresas: ".concat(status_code + ""));
