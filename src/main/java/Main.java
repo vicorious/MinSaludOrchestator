@@ -94,11 +94,11 @@ public class Main
             {
                 String json_string = EntityUtils.toString(response.getEntity());
                 JSONObject result = new JSONObject(json_string);
-                return result.getString("token");
+                return result.getString("access_token");
             }else
             {
                 throw new IllegalStateException("Error en el token: ".concat(status_code + ""));
-                
+
             }
         }
     }
