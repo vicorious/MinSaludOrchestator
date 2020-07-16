@@ -66,10 +66,16 @@ public class Main
             JSONObject afiliaciones = afiliaciones(token);
             log.info("Consumo afiliaciones exitoso!");
             log.info(afiliaciones.toString());
+            log.info("Token de nuevo...");
+            token = token();
+            log.info("Consumo token exitoso!");
             log.info("Consulta empresa...");
             JSONObject consultaEmpresas = consultaEmpresas(token);
             log.info("Consumo consultaEmpresa exitoso!");
             log.info(consultaEmpresas.toString());
+            log.info("Token de nuevo...");
+            token = token();
+            log.info("Consumo token exitoso!");
             log.info("Consulta estructura empresa...");
             JSONObject consultaEstructuras = consultaEstructuraEmpresas(token);
             log.info("Consumo consultaEstructuraEmpresa exitoso!");
