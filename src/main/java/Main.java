@@ -116,7 +116,7 @@ public class Main
         HttpPost post = new HttpPost(URL_AFILIACIONES);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
-        StringBuilder sb = new StringBuilder("{ok}");
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post)) {
             int status_code = response.getStatusLine().getStatusCode();
             if(status_code >= 200 && status_code <= 204)
@@ -163,7 +163,7 @@ public class Main
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
         post.setEntity(new ByteArrayEntity(request.toString().getBytes()));
-        StringBuilder sb = new StringBuilder("{ok}");
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
@@ -202,7 +202,7 @@ public class Main
         HttpPost post = new HttpPost(URL_EMPRESAS);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
-        StringBuilder sb = new StringBuilder("{ok}");
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post))
         {
