@@ -153,7 +153,7 @@ public class Main
         JSONObject request = new JSONObject();
         final String codigoARL      = "CodigoARL";
         final String fechaInicio    = "FechaInicio";
-        final String fechaFin       = "FechaFin";
+        final String fechaFin       = "FechaFinal";
 
         request.put(codigoARL, configFile.getProp(codigoARL));
         request.put(fechaInicio, configFile.getProp(fechaInicio));
