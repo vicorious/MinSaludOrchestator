@@ -28,6 +28,7 @@ public class Main
     final static String URL_TOKEN = "http://localhost:8080/token";
     final static String URL_AFILIACIONES = "http://localhost:8080/AfiliacionARL";
     final static String URL_EMPRESAS = "http://localhost:8080/ConsultaEmpresasTrasladadas";
+    final static String URL_ESTRUCTURA_EMPRESAS = "http://localhost:8080/ConsultaEstructuraEmpresa";
 
     final static String CONTENT_TYPE = "Content-Type";
     final static String AUTHORIZATION = "Authorization";
@@ -199,7 +200,7 @@ public class Main
     private JSONObject consultaEstructuraEmpresas(String token) throws IOException
     {
 
-        HttpPost post = new HttpPost(URL_EMPRESAS);
+        HttpPost post = new HttpPost(URL_ESTRUCTURA_EMPRESAS);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
         post.setHeader(AUTHORIZATION, BEARER.concat(token));
         StringBuilder sb = new StringBuilder("{ok:'ok'}");
