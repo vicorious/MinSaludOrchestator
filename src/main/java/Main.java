@@ -80,6 +80,16 @@ public class Main
             log.info("Consumo afiliaciones exitoso!");
             log.info(afiliaciones.toString());
 
+            log.info("Centros de trabajo novedades...");
+            JSONObject novedadesCentro = novedadesCentro(token);
+            log.info("Consumo modificacionIBC exitoso!");
+            log.info(novedadesCentro.toString());
+
+            log.info("Sedes novedades...");
+            JSONObject novedadesSede = novedadesSede(token);
+            log.info("Consumo modificacionIBC exitoso!");
+            log.info(novedadesSede.toString());
+
             log.info("Inicio relacion laboral...");
             JSONObject inicioRelacionLaboral = inicioRelacionLaboral(token);
             log.info("Consumo Inicio relacion laboral exitoso!");
@@ -105,6 +115,11 @@ public class Main
             log.info("Consumo retiroDefinitivo exitoso!");
             log.info(retiroDefinitivo.toString());
 
+            log.info("Token Otravez...");
+            token = token();
+            log.info("Consumo token exitoso again!");
+            log.info(token);
+
             log.info("reclasificacionCentroTrabajo...");
             JSONObject reclasificacionCentroTrabajo = reclasificacionCentroTrabajo(token);
             log.info("Consumo reclasificacionCentroTrabajo exitoso!");
@@ -114,16 +129,6 @@ public class Main
             JSONObject modificacionIBC = modificacionIBC(token);
             log.info("Consumo modificacionIBC exitoso!");
             log.info(modificacionIBC.toString());
-
-            log.info("Centros de trabajo novedades...");
-            JSONObject novedadesCentro = novedadesCentro(token);
-            log.info("Consumo modificacionIBC exitoso!");
-            log.info(novedadesCentro.toString());
-
-            log.info("Sedes novedades...");
-            JSONObject novedadesSede = novedadesSede(token);
-            log.info("Consumo modificacionIBC exitoso!");
-            log.info(novedadesSede.toString());
 
             log.info("Novedades transitorias...");
             JSONObject novedadesTransitorias = novedadesTransitorias(token);
