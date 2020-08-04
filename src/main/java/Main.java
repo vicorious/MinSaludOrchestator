@@ -37,6 +37,10 @@ public class Main
     final static String URL_RETIRO_DEFINITIVO = "http://localhost:8080/RetiroDefinitivoEmpresaSGRL";
     final static String URL_MODIFICACION_IBC = "http://localhost:8080/ModificacionIBC";
 
+    final static String URL_NOVEDAD_CENTRO_TRABAJO = "http://localhost:8080/NovedadesCentroTrabajo";
+    final static String URL_NOVEDAD_SEDES= "http://localhost:8080/NovedadesSedes";
+    final static String URL_NOVEDAD_TRANSITORIAS = "http://localhost:8080/NovedadesTransitorias";
+
     final static String CONTENT_TYPE = "Content-Type";
     final static String AUTHORIZATION = "Authorization";
     final static String BEARER = "bearer ";
@@ -110,6 +114,21 @@ public class Main
             JSONObject modificacionIBC = modificacionIBC(token);
             log.info("Consumo modificacionIBC exitoso!");
             log.info(modificacionIBC.toString());
+
+            log.info("Centros de trabajo novedades...");
+            JSONObject novedadesCentro = novedadesCentro(token);
+            log.info("Consumo modificacionIBC exitoso!");
+            log.info(novedadesCentro.toString());
+
+            log.info("Sedes novedades...");
+            JSONObject novedadesSede = novedadesSede(token);
+            log.info("Consumo modificacionIBC exitoso!");
+            log.info(novedadesSede.toString());
+
+            log.info("Novedades transitorias...");
+            JSONObject novedadesTransitorias = novedadesTransitorias(token);
+            log.info("Consumo modificacionIBC exitoso!");
+            log.info(novedadesTransitorias.toString());
 
             log.info("Consulta empresa...");
             JSONObject consultaEmpresas = consultaEmpresas(token);
@@ -534,6 +553,117 @@ public class Main
             }else
             {
                 throw new IllegalStateException("Error en las modificacionIBC: ".concat(status_code + ""));
+            }
+        }
+    }
+
+    /**
+     *
+     * @param token
+     * @return
+     * @throws IOException
+     */
+    private JSONObject novedadesSede(String token) throws IOException
+    {
+        HttpPost post = new HttpPost(URL_NOVEDAD_SEDES);
+        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
+        post.setHeader(AUTHORIZATION, BEARER.concat(token));
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
+        try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post)) {
+            int status_code = response.getStatusLine().getStatusCode();
+            if(status_code >= 200 && status_code <= 204)
+            {
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+
+                }
+
+                return new JSONObject(sb.toString());
+
+            }else
+            {
+                throw new IllegalStateException("Error en las NovedadesSedes: ".concat(status_code + ""));
+            }
+        }
+    }
+
+    /**
+     *
+     * @param token
+     * @return
+     * @throws IOException
+     */
+    private JSONObject novedadesCentro(String token) throws IOException
+    {
+        HttpPost post = new HttpPost(URL_NOVEDAD_CENTRO_TRABAJO);
+        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
+        post.setHeader(AUTHORIZATION, BEARER.concat(token));
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
+        try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post)) {
+            int status_code = response.getStatusLine().getStatusCode();
+            if(status_code >= 200 && status_code <= 204)
+            {
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+
+                }
+
+                return new JSONObject(sb.toString());
+
+            }else
+            {
+                throw new IllegalStateException("Error en las novedadesCentro: ".concat(status_code + ""));
+            }
+        }
+    }
+
+    /**
+     *
+     * @param token
+     * @return
+     * @throws IOException
+     */
+    private JSONObject novedadesTransitorias(String token) throws IOException
+    {
+        HttpPost post = new HttpPost(URL_NOVEDAD_TRANSITORIAS);
+        post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
+        post.setHeader(AUTHORIZATION, BEARER.concat(token));
+        StringBuilder sb = new StringBuilder("{ok:'ok'}");
+        try (CloseableHttpClient httpClient = HttpClients.createDefault(); CloseableHttpResponse response = httpClient.execute(post)) {
+            int status_code = response.getStatusLine().getStatusCode();
+            if(status_code >= 200 && status_code <= 204)
+            {
+                if(response.getEntity() != null && response.getEntity().getContentLength() > 0)
+                {
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
+
+                }
+
+                return new JSONObject(sb.toString());
+
+            }else
+            {
+                throw new IllegalStateException("Error en las novedadesTransitorias: ".concat(status_code + ""));
             }
         }
     }
