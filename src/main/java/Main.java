@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -234,9 +235,11 @@ public class Main
         final String fechaInicio    = "FechaInicio";
         final String fechaFin       = "FechaFinal";
 
+        String formattedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
+
         request.put(codigoARL, configFile.getProp(codigoARL));
         request.put(fechaInicio, configFile.getProp(fechaInicio));
-        request.put(fechaFin, LocalDate.now().toString());
+        request.put(fechaFin, formattedDate);
 
         HttpPost post = new HttpPost(URL_EMPRESAS);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
