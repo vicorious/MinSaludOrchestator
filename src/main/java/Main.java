@@ -239,7 +239,7 @@ public class Main
 
         request.put(codigoARL, configFile.getProp(codigoARL));
         request.put(fechaInicio, configFile.getProp(fechaInicio));
-        request.put(fechaFin, formattedDate);
+        request.put(fechaFin, LocalDate.now().toString());
 
         HttpPost post = new HttpPost(URL_EMPRESAS);
         post.setHeader(CONTENT_TYPE, CONTENT_TYPE_JSON);
